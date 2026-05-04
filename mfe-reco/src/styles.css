@@ -1,0 +1,29 @@
+.mfe-reco {
+  font-family: system-ui, sans-serif;
+  color: #e6e6f0;
+  background: linear-gradient(180deg, #1a1a2e 0%, #15152a 100%);
+  border: 1px solid #2a2a44;
+  border-radius: 8px;
+  padding: 1rem;
+}
+.mfe-reco__title { margin: 0 0 1rem; font-size: 1.2rem; color: #118ab2; text-transform: uppercase; letter-spacing: 0.05em; }
+.mfe-reco__row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.reco-card { background: #0f0f1e; border: 1px solid #2a2a44; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+.reco-card__img { height: 90px; background-size: cover; background-position: center; }
+.reco-card__body { padding: 0.6rem; display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
+.reco-card__title { font-size: 0.85rem; margin: 0; }
+.reco-card__price { font-size: 0.85rem; color: #ffd166; margin: 0; font-weight: 700; }
+.reco-card__btn {
+  background: #118ab2;
+  color: white;
+  border: 0;
+  padding: 0.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: auto;
+}
+.reco-card__btn:hover { background: #1ba6d3; }
+@media (max-width: 720px) { .mfe-reco__row { grid-template-columns: 1fr; } }
