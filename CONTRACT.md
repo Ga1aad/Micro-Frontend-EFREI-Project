@@ -6,6 +6,7 @@ Référence partagée par tous les MFEs. Toute divergence = silence radio à l'a
 
 `shared/eventBus.js` — singleton global exposé sur `window.__eventBus__`.
 API : `emit(event, payload)`, `on(event, handler) -> unsubscribe`, `off(event, handler)`.
+Les noms d'événements sont aussi exportés via `EVENTS` pour éviter les divergences de chaînes.
 
 ## Événements
 

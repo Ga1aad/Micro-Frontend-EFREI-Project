@@ -46,6 +46,7 @@
   transition: transform 0.1s, box-shadow 0.1s;
 }
 .mfe-cart__remove:hover { background: #ff5c83; }
+.mfe-cart__remove:focus-visible { outline: 2px solid #ffd166; outline-offset: 3px; }
 .mfe-cart__remove:active { transform: translate(2px, 2px); box-shadow: 0 0 0 #000; }
 .mfe-cart__remove-icon {
   font-size: 1.2rem;
@@ -69,4 +70,5 @@
 }
 .mfe-cart__clear:disabled { opacity: 0.4; cursor: not-allowed; border-color: #6b6b8a; color: #6b6b8a; }
 .mfe-cart__clear:not(:disabled):hover { background: #ef476f; color: #0f0f1e; box-shadow: 2px 2px 0 #000; }
+.mfe-cart__clear:focus-visible { outline: 2px solid #ffd166; outline-offset: 3px; }
 .mfe-cart__clear:not(:disabled):active { transform: translate(2px, 2px); box-shadow: 0 0 0 #000; }

@@ -11,7 +11,10 @@ export default function Header({ cartCount = 0 }) {
       <div className="shell__nav">
         <a href="#catalogue">Catalogue</a>
         <a href="#panier">Panier</a>
-        <div className="shell__badge" aria-label="Articles dans le panier">
+        <div
+          className="shell__badge"
+          aria-label={`${cartCount} article${cartCount > 1 ? "s" : ""} dans le panier`}
+        >
           🛒 <span className="shell__badge-count">{cartCount}</span>
         </div>
       </div>

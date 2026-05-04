@@ -1,16 +1,20 @@
 import React from "react";
-import eventBus from "../../shared/eventBus";
+import eventBus, { EVENTS } from "../../shared/eventBus";
 import { products } from "../../shared/products";
 import "./styles.css";
 
+function toCartPayload(product) {
+  return {
+    id: product.id,
+    title: product.title,
+    price: product.price,
+    image: product.image,
+  };
+}
+
 export default function ProductGrid() {
   const handleAdd = (product) => {
-    eventBus.emit("product:add", {
-      id: product.id,
-      title: product.title,
-      price: product.price,
-      image: product.image,
-    });
+    eventBus.emit(EVENTS.PRODUCT_ADD, toCartPayload(product));
   };
 
   return (
@@ -27,7 +31,11 @@ export default function ProductGrid() {
             <div className="card__body">
               <h3 className="card__title">{p.title}</h3>
               <p className="card__price">{p.price} €</p>
-              <button type="button" className="card__btn" onClick={() => handleAdd(p)}>
+              <button
+                type="button"
+                className="card__btn"
+                onClick={() => handleAdd(p)}
+              >
                 Ajouter
               </button>
             </div>

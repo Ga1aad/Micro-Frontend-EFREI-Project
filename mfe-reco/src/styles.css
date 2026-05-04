@@ -46,5 +46,6 @@
   transition: transform 0.1s, box-shadow 0.1s;
 }
 .reco-card__btn:hover { background: #1ba6d3; }
+.reco-card__btn:focus-visible { outline: 2px solid #ffd166; outline-offset: 3px; }
 .reco-card__btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 #0f0f1e; }
 @media (max-width: 720px) { .mfe-reco__row { grid-template-columns: 1fr; } }

@@ -1,8 +1,8 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import Header from "./components/Header";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ProductGrid, Cart, Reco } from "./remotes";
-import eventBus from "../../shared/eventBus";
+import eventBus, { EVENTS } from "../../shared/eventBus";
 
 function SkeletonGrid() {
   return (
@@ -32,23 +32,30 @@ function SkeletonList() {
 export default function App() {
   const [cartCount, setCartCount] = useState(0);
   const [toasts, setToasts] = useState([]);
+  const toastTimeouts = useRef(new Map());
 
   useEffect(() => {
-    const offCart = eventBus.on("cart:updated", ({ count }) => {
-      setCartCount(count || 0);
+    const offCart = eventBus.on(EVENTS.CART_UPDATED, (payload = {}) => {
+      setCartCount(Number.isFinite(payload.count) ? payload.count : 0);
     });
 
-    const offProduct = eventBus.on("product:add", (product) => {
-      const id = Date.now();
+    const offProduct = eventBus.on(EVENTS.PRODUCT_ADD, (product = {}) => {
+      if (!product.title) return;
+
+      const id = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       setToasts((prev) => [...prev, { id, title: product.title }]);
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setToasts((prev) => prev.filter((t) => t.id !== id));
+        toastTimeouts.current.delete(id);
       }, 3000);
+      toastTimeouts.current.set(id, timeoutId);
     });
 
     return () => {
       offCart();
       offProduct();
+      toastTimeouts.current.forEach(clearTimeout);
+      toastTimeouts.current.clear();
     };
   }, []);
 
@@ -81,9 +88,9 @@ export default function App() {
         </section>
       </main>
 
-      <div className="toast-container">
+      <div className="toast-container" aria-live="polite" aria-atomic="true">
         {toasts.map((t) => (
-          <div key={t.id} className="toast">
+          <div key={t.id} className="toast" role="status">
             + 1 {t.title}
           </div>
         ))}
