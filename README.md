@@ -15,17 +15,22 @@ Voir [`CONTRACT.md`](./CONTRACT.md) pour la liste exhaustive des événements et
 
 ## Démarrer
 
-Dans 4 terminaux :
+### Option 1 — un seul terminal (recommandé)
 
 ```bash
-# T1
-cd mfe-product && npm install && npm start
-# T2
-cd mfe-cart && npm install && npm start
-# T3
-cd mfe-reco && npm install && npm start
-# T4
-cd shell && npm install && npm start
+./start-all.sh
+```
+
+Lance les 4 services en parallèle, installe les deps si besoin, logs préfixés.
+Ctrl+C arrête proprement tout le monde.
+
+### Option 2 — 4 terminaux (mode classique)
+
+```bash
+cd mfe-product && npm install && npm start   # T1 :3001
+cd mfe-cart    && npm install && npm start   # T2 :3002
+cd mfe-reco    && npm install && npm start   # T3 :3003
+cd shell       && npm install && npm start   # T4 :3000
 ```
 
 Puis ouvrir <http://localhost:3000>.
