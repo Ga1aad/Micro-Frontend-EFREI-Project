@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import eventBus from "../../shared/eventBus";
+import eventBus, { EVENTS } from "../../shared/eventBus";
 import "./styles.css";
 
 function summarize(items) {
@@ -8,20 +8,44 @@ function summarize(items) {
   return { items, count, total: Math.round(total * 100) / 100 };
 }
 
+function normalizeProduct(product) {
+  if (!product || typeof product !== "object") return null;
+
+  const price = Number(product.price);
+  if (
+    typeof product.id !== "string" ||
+    typeof product.title !== "string" ||
+    typeof product.image !== "string" ||
+    !Number.isFinite(price)
+  ) {
+    return null;
+  }
+
+  return {
+    id: product.id,
+    title: product.title,
+    price,
+    image: product.image,
+  };
+}
+
 export default function Cart() {
   const [items, setItems] = useState([]);
 
   // Re-emit cart:updated on every state change so listeners stay in sync.
   useEffect(() => {
-    eventBus.emit("cart:updated", summarize(items));
+    eventBus.emit(EVENTS.CART_UPDATED, summarize(items));
   }, [items]);
 
   // Listen for product:add — merge by id, increment qty.
   useEffect(() => {
-    const off = eventBus.on("product:add", (product) => {
+    const off = eventBus.on(EVENTS.PRODUCT_ADD, (product) => {
+      const nextProduct = normalizeProduct(product);
+      if (!nextProduct) return;
+
       setItems((prev) => {
-        const idx = prev.findIndex((i) => i.id === product.id);
-        if (idx === -1) return [...prev, { ...product, qty: 1 }];
+        const idx = prev.findIndex((i) => i.id === nextProduct.id);
+        if (idx === -1) return [...prev, { ...nextProduct, qty: 1 }];
         const next = prev.slice();
         next[idx] = { ...next[idx], qty: next[idx].qty + 1 };
         return next;
@@ -32,12 +56,12 @@ export default function Cart() {
 
   // Listen for cart:clear (anyone can request a wipe).
   useEffect(() => {
-    const off = eventBus.on("cart:clear", () => setItems([]));
+    const off = eventBus.on(EVENTS.CART_CLEAR, () => setItems([]));
     return off;
   }, []);
 
   const handleClear = useCallback(() => {
-    eventBus.emit("cart:clear", {});
+    eventBus.emit(EVENTS.CART_CLEAR, {});
   }, []);
 
   const handleRemoveLine = useCallback((id) => {

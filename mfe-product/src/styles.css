@@ -48,4 +48,5 @@
   transition: transform 0.1s, box-shadow 0.1s;
 }
 .card__btn:hover { background: #ff5c83; }
+.card__btn:focus-visible { outline: 2px solid #ffd166; outline-offset: 3px; }
 .card__btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 #0f0f1e; }

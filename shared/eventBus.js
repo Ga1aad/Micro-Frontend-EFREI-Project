@@ -3,6 +3,12 @@
 
 const KEY = "__eventBus__";
 
+export const EVENTS = Object.freeze({
+  PRODUCT_ADD: "product:add",
+  CART_UPDATED: "cart:updated",
+  CART_CLEAR: "cart:clear",
+});
+
 function createBus() {
   const listeners = new Map(); // event -> Set<handler>
 
@@ -10,11 +16,18 @@ function createBus() {
     on(event, handler) {
       if (!listeners.has(event)) listeners.set(event, new Set());
       listeners.get(event).add(handler);
-      return () => this.off(event, handler);
+      return () => {
+        const set = listeners.get(event);
+        if (!set) return;
+        set.delete(handler);
+        if (set.size === 0) listeners.delete(event);
+      };
     },
     off(event, handler) {
       const set = listeners.get(event);
-      if (set) set.delete(handler);
+      if (!set) return;
+      set.delete(handler);
+      if (set.size === 0) listeners.delete(event);
     },
     emit(event, payload) {
       const set = listeners.get(event);

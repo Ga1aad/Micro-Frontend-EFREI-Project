@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
-import eventBus from "../../shared/eventBus";
+import eventBus, { EVENTS } from "../../shared/eventBus";
 import { recommend } from "../../shared/products";
 import "./styles.css";
+
+function toCartPayload(product) {
+  return {
+    id: product.id,
+    title: product.title,
+    price: product.price,
+    image: product.image,
+  };
+}
 
 export default function Reco() {
   const [recos, setRecos] = useState(() => recommend([]));
 
   useEffect(() => {
-    const off = eventBus.on("cart:updated", ({ items }) => {
-      setRecos(recommend(items || []));
+    const off = eventBus.on(EVENTS.CART_UPDATED, (payload = {}) => {
+      setRecos(recommend(payload.items || []));
     });
     return off;
   }, []);
 
   const handleAdd = (p) => {
-    eventBus.emit("product:add", {
-      id: p.id,
-      title: p.title,
-      price: p.price,
-      image: p.image,
-    });
+    eventBus.emit(EVENTS.PRODUCT_ADD, toCartPayload(p));
   };
 
   return (
@@ -31,11 +35,16 @@ export default function Reco() {
             <div
               className="reco-card__img"
               style={{ backgroundImage: `url(${p.image})` }}
+              aria-hidden="true"
             />
             <div className="reco-card__body">
               <h3 className="reco-card__title">{p.title}</h3>
               <p className="reco-card__price">{p.price} €</p>
-              <button type="button" className="reco-card__btn" onClick={() => handleAdd(p)}>
+              <button
+                type="button"
+                className="reco-card__btn"
+                onClick={() => handleAdd(p)}
+              >
                 Ajouter
               </button>
             </div>
