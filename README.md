@@ -64,6 +64,13 @@ Puis ouvrir <http://localhost:3000>.
 └── mfe-reco/             # port 3003 (Étudiant D)
 ```
 
+## Améliorations UI/UX (Retro Gaming)
+
+Afin de renforcer le thème de la boutique, plusieurs améliorations graphiques et d'expérience utilisateur ont été ajoutées :
+- **Design Retro** : Intégration de polices 8-bit (`Press Start 2P`), de boutons de type "arcade" en 3D (`box-shadow`), et d'un effet visuel de Scanlines d'écran cathodique sur toute l'application.
+- **Skeleton Loaders** : Les zones de Micro-Frontends affichent des Skeletons (blocs clignotants) en attendant le chargement des composants asynchrones.
+- **Toasts Notifications** : L'ajout d'un produit au panier déclenche un petit toast vert ("+ 1 Titre") en bas à droite pour un meilleur retour visuel.
+
 ## Branches
 
 - `main` : scaffolding + parties "déjà faites" (JSX, CSS, layout, shared)
@@ -74,8 +81,8 @@ Puis ouvrir <http://localhost:3000>.
 - [x] Les 4 services démarrent sans erreur (Verify.sh)
       <img width="561" height="179" alt="image" src="https://github.com/user-attachments/assets/79af6845-6289-4e49-be66-4dd248e89740" />
 
-- [ ] Cliquer "Ajouter" dans le catalogue ajoute l'article au panier
-- [ ] Le badge du header affiche le bon nombre
-- [ ] Les recommandations changent selon le contenu du panier
-- [ ] Vider le panier remet tout à zéro
-- [ ] Tuer `mfe-reco` (Ctrl+C) ne casse pas le reste de la page
+- [x] Cliquer "Ajouter" dans le catalogue ajoute l'article au panier
+- [x] Le badge du header affiche le bon nombre
+- [x] Les recommandations changent selon le contenu du panier
+- [x] Vider le panier remet tout à zéro
+- [x] Tuer `mfe-reco` (Ctrl+C) ne casse pas le reste de la page
