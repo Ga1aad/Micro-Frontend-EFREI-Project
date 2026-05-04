@@ -7,7 +7,7 @@ Boutique retro gaming en architecture Micro-Frontends (Module Federation, Webpac
 - [Galaad FILÂTRE](https://github.com/ga1aad)
 - [Julien ESNAULT](https://github.com/julienesn)
 - [Sofiane FARES](https://github.com/faressofiane)
-- [Clément SUIRE](https://github.com/cleluk)
+- [Clément SUIRE](https://github.com/cleluke)
 
 ## Architecture
 
