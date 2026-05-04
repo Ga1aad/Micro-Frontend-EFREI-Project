@@ -62,7 +62,9 @@ Puis ouvrir <http://localhost:3000>.
 
 ## Validation
 
-- [X] Les 4 services démarrent sans erreur
+- [X] Les 4 services démarrent sans erreur (Verify.sh)
+<img width="561" height="179" alt="image" src="https://github.com/user-attachments/assets/79af6845-6289-4e49-be66-4dd248e89740" />
+
 - [ ] Cliquer "Ajouter" dans le catalogue ajoute l'article au panier
 - [ ] Le badge du header affiche le bon nombre
 - [ ] Les recommandations changent selon le contenu du panier
