@@ -1,6 +1,6 @@
-// Skeleton webpack config — Étudiant A doit ajouter ModuleFederationPlugin
-// avec les remotes (mfeProduct, mfeCart, mfeReco) et la déclaration shared.
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
+const deps = require("./package.json").dependencies;
 
 module.exports = {
   entry: "./src/index.js",
@@ -11,7 +11,10 @@ module.exports = {
     hot: false,
     liveReload: false,
   },
-  output: { publicPath: "http://localhost:3000/", clean: true },
+  output: {
+    publicPath: "http://localhost:3000/",
+    clean: true,
+  },
   resolve: { extensions: [".js", ".jsx"] },
   module: {
     rules: [
@@ -28,5 +31,19 @@ module.exports = {
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({ template: "./public/index.html" })],
+  plugins: [
+    new ModuleFederationPlugin({
+      name: "shell",
+      remotes: {
+        mfeProduct: "mfeProduct@http://localhost:3001/remoteEntry.js",
+        mfeCart: "mfeCart@http://localhost:3002/remoteEntry.js",
+        mfeReco: "mfeReco@http://localhost:3003/remoteEntry.js",
+      },
+      shared: {
+        react: { singleton: true, requiredVersion: deps.react, eager: false },
+        "react-dom": { singleton: true, requiredVersion: deps["react-dom"], eager: false },
+      },
+    }),
+    new HtmlWebpackPlugin({ template: "./public/index.html" }),
+  ],
 };
