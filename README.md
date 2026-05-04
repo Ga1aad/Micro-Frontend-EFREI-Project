@@ -2,14 +2,21 @@
 
 Boutique retro gaming en architecture Micro-Frontends (Module Federation, Webpack 5).
 
+## Equipe 10
+
+- [Galaad FILÂTRE](https://github.com/ga1aad)
+- [Julien ESNAULT](https://github.com/julienesn)
+- [Sofiane FARES](https://github.com/faressofiane)
+- [Clément SUIRE](https://github.com/cleluk)
+
 ## Architecture
 
-| Service       | Port  | Rôle                                         | Responsable     |
-|---------------|-------|----------------------------------------------|-----------------|
-| `shell`       | 3000  | Orchestrateur, charge les 3 MFEs             | Étudiant A      |
-| `mfe-product` | 3001  | Grille de produits + bouton "Ajouter"        | Étudiant B      |
-| `mfe-cart`    | 3002  | Panier latéral (liste, total, vider)         | Étudiant C      |
-| `mfe-reco`    | 3003  | Recommandations "Les joueurs achètent aussi" | Étudiant D      |
+| Service       | Port | Rôle                                         | Responsable |
+| ------------- | ---- | -------------------------------------------- | ----------- |
+| `shell`       | 3000 | Orchestrateur, charge les 3 MFEs             | Étudiant A  |
+| `mfe-product` | 3001 | Grille de produits + bouton "Ajouter"        | Étudiant B  |
+| `mfe-cart`    | 3002 | Panier latéral (liste, total, vider)         | Étudiant C  |
+| `mfe-reco`    | 3003 | Recommandations "Les joueurs achètent aussi" | Étudiant D  |
 
 Voir [`CONTRACT.md`](./CONTRACT.md) pour la liste exhaustive des événements et payloads.
 
@@ -18,11 +25,13 @@ Voir [`CONTRACT.md`](./CONTRACT.md) pour la liste exhaustive des événements et
 ### Option 1 — un seul terminal (recommandé)
 
 Sur macOS (zsh par défaut) :
+
 ```zsh
 ./start-all.zsh
 ```
 
 Sur Linux ou autre shell bash :
+
 ```bash
 ./start-all.sh
 ```
@@ -62,8 +71,8 @@ Puis ouvrir <http://localhost:3000>.
 
 ## Validation
 
-- [X] Les 4 services démarrent sans erreur (Verify.sh)
-<img width="561" height="179" alt="image" src="https://github.com/user-attachments/assets/79af6845-6289-4e49-be66-4dd248e89740" />
+- [x] Les 4 services démarrent sans erreur (Verify.sh)
+      <img width="561" height="179" alt="image" src="https://github.com/user-attachments/assets/79af6845-6289-4e49-be66-4dd248e89740" />
 
 - [ ] Cliquer "Ajouter" dans le catalogue ajoute l'article au panier
 - [ ] Le badge du header affiche le bon nombre
