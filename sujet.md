@@ -77,12 +77,12 @@ Si ca casse : F12, identifier le probleme.
 ---
 
 Validation :
-[ X] Les 4 services demarrent sans erreur
-[ ] Cliquer "Ajouter" dans le catalogue ajoute l'article au panier
-[ ] Le badge du header affiche le bon nombre
-[ ] Les recommandations changent selon le contenu du panier
-[ ] Vider le panier remet tout a zero
-[ ] Tuer mfe-reco (Ctrl+C) ne casse pas le reste de la page
+[x] Les 4 services demarrent sans erreur
+[x] Cliquer "Ajouter" dans le catalogue ajoute l'article au panier
+[x] Le badge du header affiche le bon nombre
+[x] Les recommandations changent selon le contenu du panier
+[x] Vider le panier remet tout a zero
+[x] Tuer mfe-reco (Ctrl+C) ne casse pas le reste de la page
 
 ModuleFederationPlugin | webpack
 webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset.

@@ -27,7 +27,7 @@ export default function ProductGrid() {
             <div className="card__body">
               <h3 className="card__title">{p.title}</h3>
               <p className="card__price">{p.price} €</p>
-              <button className="card__btn" onClick={() => handleAdd(p)}>
+              <button type="button" className="card__btn" onClick={() => handleAdd(p)}>
                 Ajouter
               </button>
             </div>

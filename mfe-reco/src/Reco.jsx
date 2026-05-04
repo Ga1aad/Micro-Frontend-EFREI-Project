@@ -35,7 +35,7 @@ export default function Reco() {
             <div className="reco-card__body">
               <h3 className="reco-card__title">{p.title}</h3>
               <p className="reco-card__price">{p.price} €</p>
-              <button className="reco-card__btn" onClick={() => handleAdd(p)}>
+              <button type="button" className="reco-card__btn" onClick={() => handleAdd(p)}>
                 Ajouter
               </button>
             </div>

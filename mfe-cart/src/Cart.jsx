@@ -87,6 +87,7 @@ export default function Cart() {
           <strong>{total.toFixed(2)} €</strong>
         </div>
         <button
+          type="button"
           className="mfe-cart__clear"
           onClick={handleClear}
           disabled={items.length === 0}

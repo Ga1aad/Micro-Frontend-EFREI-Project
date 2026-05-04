@@ -56,7 +56,7 @@ export default function App() {
     <div className="shell">
       <Header cartCount={cartCount} />
       <main className="shell__main">
-        <section className="shell__products">
+        <section id="catalogue" className="shell__products">
           <ErrorBoundary name="mfe-product">
             <Suspense fallback={<SkeletonGrid />}>
               <ProductGrid />
@@ -64,7 +64,7 @@ export default function App() {
           </ErrorBoundary>
         </section>
 
-        <aside className="shell__cart">
+        <aside id="panier" className="shell__cart">
           <ErrorBoundary name="mfe-cart">
             <Suspense fallback={<SkeletonList />}>
               <Cart />
@@ -72,7 +72,7 @@ export default function App() {
           </ErrorBoundary>
         </aside>
 
-        <section className="shell__reco">
+        <section id="recommandations" className="shell__reco">
           <ErrorBoundary name="mfe-reco">
             <Suspense fallback={<SkeletonGrid />}>
               <Reco />

@@ -1,7 +1,5 @@
 import React from "react";
 
-// Squelette : Étudiant A doit câbler le badge sur cart:updated
-// pour afficher le nombre d'articles en temps réel.
 export default function Header({ cartCount = 0 }) {
   return (
     <header className="shell__header">
