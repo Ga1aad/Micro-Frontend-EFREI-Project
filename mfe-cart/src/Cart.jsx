@@ -40,6 +40,10 @@ export default function Cart() {
     eventBus.emit("cart:clear", {});
   }, []);
 
+  const handleRemoveLine = useCallback((id) => {
+    setItems((prev) => prev.filter((i) => i.id !== id));
+  }, []);
+
   const { count, total } = summarize(items);
 
   return (
@@ -55,13 +59,23 @@ export default function Cart() {
         <ul className="mfe-cart__list">
           {items.map((it) => (
             <li key={it.id} className="mfe-cart__item">
-              <img src={it.image} alt="" />
+              <img src={it.image} alt={`Vignette : ${it.title}`} />
               <div className="mfe-cart__item-body">
                 <span className="mfe-cart__item-title">{it.title}</span>
                 <span className="mfe-cart__item-meta">
-                  {it.qty} × {it.price} €
+                  {it.qty} × {Number(it.price).toFixed(2)} €
                 </span>
               </div>
+              <button
+                type="button"
+                className="mfe-cart__remove"
+                onClick={() => handleRemoveLine(it.id)}
+                aria-label={`Retirer ${it.title} du panier`}
+              >
+                <span className="mfe-cart__remove-icon" aria-hidden="true">
+                  ×
+                </span>
+              </button>
             </li>
           ))}
         </ul>
@@ -70,7 +84,7 @@ export default function Cart() {
       <footer className="mfe-cart__footer">
         <div className="mfe-cart__total">
           <span>Total</span>
-          <strong>{total} €</strong>
+          <strong>{total.toFixed(2)} €</strong>
         </div>
         <button
           className="mfe-cart__clear"
