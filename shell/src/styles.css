@@ -1,0 +1,105 @@
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; padding: 0; min-height: 100vh; }
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: radial-gradient(ellipse at top, #1a1a2e 0%, #0a0a18 100%);
+  color: #e6e6f0;
+}
+
+.shell { min-height: 100vh; display: flex; flex-direction: column; }
+
+.shell__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #2a2a44;
+  background: rgba(15, 15, 30, 0.85);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.shell__brand { display: flex; align-items: baseline; gap: 0.6rem; }
+.shell__logo { color: #ef476f; font-size: 1.4rem; }
+.shell__title {
+  margin: 0;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  color: #ffd166;
+  text-transform: uppercase;
+}
+.shell__tagline { font-size: 0.8rem; opacity: 0.6; }
+.shell__nav { display: flex; align-items: center; gap: 1.5rem; }
+.shell__nav a { color: #e6e6f0; text-decoration: none; font-size: 0.9rem; }
+.shell__nav a:hover { color: #ffd166; }
+.shell__badge {
+  background: #1a1a2e;
+  border: 1px solid #2a2a44;
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+.shell__badge-count {
+  background: #06d6a0;
+  color: #0f0f1e;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+  font-size: 0.8rem;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.shell__main {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  grid-template-areas:
+    "products cart"
+    "reco     reco";
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+.shell__products { grid-area: products; }
+.shell__cart { grid-area: cart; }
+.shell__reco { grid-area: reco; }
+
+.placeholder {
+  border: 2px dashed #2a2a44;
+  border-radius: 8px;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #6b6b8a;
+  font-family: monospace;
+  background: rgba(26, 26, 46, 0.4);
+}
+
+.shell__error {
+  border: 1px solid #ef476f;
+  background: rgba(239, 71, 111, 0.1);
+  color: #ef476f;
+  border-radius: 8px;
+  padding: 1.5rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+.shell__loading {
+  padding: 2rem;
+  text-align: center;
+  color: #6b6b8a;
+  font-family: monospace;
+}
+
+@media (max-width: 900px) {
+  .shell__main {
+    grid-template-columns: 1fr;
+    grid-template-areas: "products" "cart" "reco";
+  }
+}
