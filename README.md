@@ -56,7 +56,7 @@ Puis ouvrir <http://localhost:3000>.
 
 ## Validation
 
-- [ ] Les 4 services démarrent sans erreur
+- [X] Les 4 services démarrent sans erreur
 - [ ] Cliquer "Ajouter" dans le catalogue ajoute l'article au panier
 - [ ] Le badge du header affiche le bon nombre
 - [ ] Les recommandations changent selon le contenu du panier
